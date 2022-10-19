@@ -1,0 +1,35 @@
+Pizza delivery:
+LAMP
+
+Landing page - Nav with the login part, enter an address, and order now, if not logged in recommend registration and proceed. Redirect to all products.
+After that show requests in the table and request part for employees.
+All products - On top there is an option to search every product by name.
+By categories and if the user is logged in they can add it to the cart, if not show the register form on the pop-up with a login button. Show options for pizza sizes with select>option, input>checkmark for additional things.
+Cart - All products, option to remove a product, and the full price. If there is no drink in the cart recommend a drink before paying out. After that show a form for paying if there is no linked card in the profile.
+User profile - information, payment methods, and options for the password, information, and payment change. Logout button if the user is logged in. 
+Employee profile, call center - All requests, paid and unpaid. Option to call a user who requested an order. Orders placed by someone who isn’t logged in cannot go unless they are called. Employees cannot be created via form, only the admin can create them and change their information. On the request page, they can proceed with or cancel the order. Orders are sorted out by oldest to newest. If an order is marked as good it’s moved to in progress bar, where its status can be changed(making, on road, delivered). After the order is delivered the driver can mark it as complete.
+Pizzeria - They can see which order needs to be made and when they accept an order its status is changed to(making or similar). When they send the driver with the order he gets the order in his web-app part. After he finishes an order he can mark it as complete. After an order is completed the column is moved to completed orders and deleted from the in-progress part. The pizzeria has its own delivery drivers and when they accept an order it shows in the delivery app part. Then the drivers can accept the order.
+Delivery - They have orders they need to deliver and after that, they can mark that order as completed. When they receive an order it shows if it’s paid or not.
+Admin - Option to show all employees and change their information. Ability to create an employee and their category. Also, the ability to delete users and employees. List with all users as well.
+
+Languages to use:
+- HTML, Bootstrap, SASS, CSS, jQuery, PHP, MySQL
+
+SQL tables:
+Products:
+1. Pizzas - id, name, ingredients, available sizes, description, image, price
+2. Drinks - id, name, sizes, description, image, price
+3. Sweets - id, name, description, image, price
+Carts:
+1. Cart - id, order_id, product_id, quantity, price
+Orders:
+1. Order - id, user_id, price, date, status
+2. Receipts - id, user_id, price, date
+Users:
+1. User - id, name, surname, email, password, phone_number, address, created
+Employees:
+1. Employee-types - id, type
+2. Call center - id, name, surname, email, password, phone_number, type_id, created
+3. Cooks - id, name, surname, email, password, phone_number, type_id, created
+4. Delivery - id, name, surname, email, password, phone_number, type_id, created
+5. Admin - id, name, surname, email, password, phone_number, type_id, created
