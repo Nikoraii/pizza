@@ -1,3 +1,9 @@
+<?php
+
+require_once __DIR__ . '/../protected/tables/Pizza.php';
+$pizzas = Pizza::getAll();
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,6 +26,13 @@
 
     <section id="pizza">
         <h1>Pizzas</h1>
+
+        <?php foreach ($pizzas as $pizza) { ?>
+          <h2><?= $pizza->name ?></h2>
+          <small><?= $pizza->ingredients ?></small>
+          <p><?= $pizza->description ?></p>
+          <img src="<?= $pizza->image ?>" alt="">
+        <?php } ?>
     </section>
 
     <section id="sweet">
