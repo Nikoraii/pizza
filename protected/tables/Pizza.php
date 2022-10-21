@@ -12,4 +12,17 @@ class Pizza extends Table
 
         return $db->select('Pizza', $query);
     }
+
+    public static function getSizes($id)
+    {
+        $db = Database::getInstance();
+
+        $query = 'SELECT * FROM products_pizzas_prices WHERE pizza_id = :pid';
+
+        $params = [
+            ':pid' => $id
+        ];
+
+        return $db->select('Pizza', $query, $params);
+    }
 }
