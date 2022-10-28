@@ -16,6 +16,11 @@ $pizzas = Pizza::getAll();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+    <?php if (isset($_GET['error'])) { ?>
+      <script>
+        alert('You need to login in order to add items to cart!');
+      </script>
+    <?php } ?>
     <?php include '../templates/header.html' ?>
 
     <nav class="nav justify-content-start sticky-top">
@@ -30,40 +35,32 @@ $pizzas = Pizza::getAll();
         <div class="container">
           <div class="row">
             <?php foreach ($pizzas as $pizza) { ?>
-              <div class="col-lg-4 d-flex align-items-stretch">
+              <div class="col-lg-4 p-2 d-flex align-items-stretch" id="cont-<?= $pizza->id ?>">
                 <div class="card">
                   <img class="card-img-top img-fluid" src="<?= $pizza->image ?>" alt="">
                   <div class="card-body">
                     <h4 class="card-title"><?= $pizza->name ?></h4>
                     <p class="card-text"><?= $pizza->description ?></p>
-                    <select name="sizes" id="sizes" onchange="updatePrice()">
-                      <?php ?>
-                      <?php foreach ($pizza->getSizes($pizza->id) as $size) { ?>
-                        <option value="<?= $size->id ?>"><?= $size->size ?></option>
-                        <script>
-                          function updatePrice() {
-                            var size = $("#sizes").val();
-                            console.log(size);
-                          }
-                        </script>
-                      <?php } ?>
-                    </select>
-                    <p id="price">Price: </p>
+
+                      <form action="modules/add_to_cart.php" method="post">
+                        <input type="hidden" name="pizza_id" value="<?= $pizza->id ?>">
+                        <input type="hidden" name="pizza_name" value="<?= $pizza->name ?>">
+                        <select name="price" id="<?= $pizza->id ?>" class="select-size">
+                          <?php foreach ($pizza->getSizes($pizza->id) as $size) { ?>
+                            <option id="<?= $size->id ?>" value="<?= $size->price ?>"><?= $size->size ?></option>
+                          <?php } ?>
+                        </select>
+                        <p id="price-<?= $pizza->id ?>"><?= $pizza->getSizes($pizza->id)[0]->price ?></p>
+                        <input type="hidden" name="selected-size" value="<?= $pizza->getSizes($pizza->id)[0]->size ?>" id="size-<?= $pizza->id ?>">
+                        <input type="submit" value="Add">
+                      </form>
+                    
                   </div>
                 </div>
               </div>
             <?php } ?>
           </div>
         </div>
-
-          
-        </div>
-        <!-- <?php foreach ($pizzas as $pizza) { ?>
-          <h2><?= $pizza->name ?></h2>
-          <small><?= $pizza->ingredients ?></small>
-          <p><?= $pizza->description ?></p>
-          <img src="<?= $pizza->image ?>" alt="">
-        <?php } ?> -->
     </section>
 
     <section id="sweet">
@@ -83,9 +80,26 @@ $pizzas = Pizza::getAll();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
       $(document).ready(function() {
-        // $("#sizes").change(function() {
-        //   var size = $("#sizes").val();
+        // $(".test").click(function () {
+        //   var t = $(this).val();
+        //   var tp = $(".pricetest-" + t).text(t);
+        //   console.log(t);
         // })
+
+        $("#col-lg-4").each(function () {
+          var id = $(".select-size").attr('id');
+          var price = $(".select-size").val();
+          $("#price-" + id).text(price);
+          $("#size-" + id).val(price);
+        })
+
+        $(".select-size").on('change', function() {
+          var id = $(this).attr('id');
+          var price = $(this).val();
+          var size = $("option:selected", this).text();
+          $("#price-" + id).text(price);
+          $("#size-" + id).val(size);
+        });
       })
     </script>
   </body>

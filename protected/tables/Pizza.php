@@ -25,4 +25,17 @@ class Pizza extends Table
 
         return $db->select('Pizza', $query, $params);
     }
+
+    // public static function cheapest($id)
+    // {
+    //     $db = Database::getInstance();
+
+    //     $query = 'SELECT MIN(price) FROM products_pizzas_prices WHERE pizza_id = :pid';
+
+    //     $params = [
+    //         ':pid' => $id
+    //     ];
+
+    //     return $db->select('Pizza', $query, $params);
+    // }
 }
