@@ -20,4 +20,17 @@ class Cart extends Table {
 
         $db->insert('Cart', $query, $params);
     }
+
+    public static function cartRequest($user_id)
+    {
+        $db = Database::getInstance();
+
+        $query = 'SELECT * FROM carts_request WHERE user_id = :uid';
+
+        $params = [
+            ':uid' => $user_id
+        ];
+
+        return $db->select('Cart', $query, $params);
+    }
 }

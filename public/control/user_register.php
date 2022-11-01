@@ -12,7 +12,7 @@ $address = $_POST['address'];
 $user_id = User::register($name, $email, $phone, $password, $address);
 
 if ($user_id !== false) {
-    header('Location: ../index.php');
+    header('Location: ../user/login.php?reg=True');
 } else {
     header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=data');
 }

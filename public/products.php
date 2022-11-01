@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once __DIR__ . '/../protected/tables/Pizza.php';
 $pizzas = Pizza::getAll();
 
@@ -14,6 +15,7 @@ $pizzas = Pizza::getAll();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <?php if (isset($_GET['error'])) { ?>
@@ -21,7 +23,11 @@ $pizzas = Pizza::getAll();
         alert('You need to login in order to add items to cart!');
       </script>
     <?php } ?>
-    <?php include '../templates/header.html' ?>
+    <?php if (isset($_SESSION['user_id'])) {
+        include '../templates/header_log.html';
+     } else {
+        include '../templates/header.html';
+     } ?>
 
     <nav class="nav justify-content-start sticky-top">
       <a class="nav-link" href="#pizza">Pizzas</a>

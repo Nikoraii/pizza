@@ -20,4 +20,23 @@ class User extends Table {
 
         $db->insert('User', $query, $params);
     }
+
+    public static function login($email, $password)
+    {
+        $db = Database::getInstance();
+
+        $query = 'SELECT * FROM users WHERE email = :e AND password = :pass';
+
+        $params = [
+            ':e' => $email,
+            ':pass' => $password
+        ];
+
+        $users = $db->select('User', $query, $params);
+
+        foreach ($users as $user) {
+            return $user;
+        }
+        return null;
+    }
 }

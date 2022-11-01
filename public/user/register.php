@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 if (isset($_SESSION['user_id'])) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     die();
@@ -54,11 +55,13 @@ if (isset($_SESSION['user_id'])) {
     <script>
       $(document).ready(function() {
         $("#submit").attr("disabled", true);
-        $("#password_repeat").on('change', function() {
-          var pass = $("#password").text();
-          var pass_r = $("#password_repeat").text();
+        $("#password_repeat, #password").keyup(function() {
+          var pass = $("#password").val();
+          var pass_r = $("#password_repeat").val();
           if (pass == pass_r) {
             $("#submit").attr("disabled", false);
+          } else {
+            $("#submit").attr("disabled", true);
           }
         })
       })
