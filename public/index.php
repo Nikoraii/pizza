@@ -26,9 +26,9 @@ session_start();
 </head>
   <body>
     <?php if (isset($_SESSION['user_id'])) {
-        include '../templates/header_log.html';
+        include 'templates/header_log.html';
      } else {
-        include '../templates/header.html';
+        include 'templates/header.html';
      } ?>
     
     <div class="container-fluid mt-4">
@@ -44,7 +44,13 @@ session_start();
         </div>
     </div>
 
-    <?php include '../templates/footer.html' ?>
+    <?php include 'templates/footer.html' ?>
+
+    <?php if ($_GET['p'] == 'SUCCESS') { ?>
+        <script>
+            alert('Thank you for paying!');
+        </script>
+    <?php } ?>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

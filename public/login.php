@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id'])) {
   </head>
   <body>
     <div class="container">
-        <form action="../control/user_login.php" method="post">
+        <form action="control/user_login.php" method="post">
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelpId" placeholder="">

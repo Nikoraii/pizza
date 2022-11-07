@@ -21,7 +21,7 @@ if (isset($_SESSION['user_id'])) {
   </head>
   <body>
     <div class="container">
-    <form action="../control/user_register.php" method="post">
+    <form action="control/user_register.php" method="post">
       <div class="form-group">
         <label for="name">Full Name</label>
         <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId" placeholder="John Smith" required>

@@ -24,9 +24,9 @@ $pizzas = Pizza::getAll();
       </script>
     <?php } ?>
     <?php if (isset($_SESSION['user_id'])) {
-        include '../templates/header_log.html';
+        include 'templates/header_log.html';
      } else {
-        include '../templates/header.html';
+        include 'templates/header.html';
      } ?>
 
     <nav class="nav justify-content-start sticky-top">
@@ -70,14 +70,14 @@ $pizzas = Pizza::getAll();
     </section>
 
     <section id="sweet">
-        <h1>Sweets</h1>
+        <!-- <h1>Sweets</h1> -->
     </section>
 
     <section id="drink">
-        <h1>Drinks</h1>
+        <!-- <h1>Drinks</h1> -->
     </section>
     
-    <?php include '../templates/footer.html' ?>
+    <?php include 'templates/footer.html' ?>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

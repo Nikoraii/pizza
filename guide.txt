@@ -1,5 +1,4 @@
 Pizza delivery:
-LAMP
 
 Landing page - Nav with the login part, enter an address, and order now, if not logged in recommend registration and proceed. Redirect to all products.
 After that show requests in the table and request part for employees.
@@ -13,7 +12,7 @@ Delivery - They have orders they need to deliver and after that, they can mark t
 Admin - Option to show all employees and change their information. Ability to create an employee and their category. Also, the ability to delete users and employees. List with all users as well.
 
 Languages to use:
-- HTML, Bootstrap, SASS, CSS, jQuery, PHP, MySQL
+- HTML, Bootstrap, CSS, jQuery, PHP, MySQL
 
 SQL tables:
 Products:

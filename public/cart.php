@@ -6,9 +6,9 @@ if (!isset($_SESSION['user_id'])) {
     die();
 }
 
-require_once __DIR__ . '/../../protected/tables/Cart.php';
+require_once __DIR__ . '/../protected/tables/Cart.php';
 $cart_items = Cart::cartRequest(($_SESSION['user_id']));
-$price;
+$price = 0;
 foreach ($cart_items as $cart_item) {
     $price += $cart_item->price;
 }
@@ -28,29 +28,38 @@ foreach ($cart_items as $cart_item) {
   </head>
   <body>
     <?php if (isset($_SESSION['user_id'])) {
-            include '../../templates/header_log.html';
+            include 'templates/header_log.html';
         } else {
-            include '../templates/header.html';
+            include 'templates/header.html';
         } ?>
       
-    <div class="container">
-        <?php foreach ($cart_items as $item) { ?>
+    <?php if ($price == 0) { ?>
+        <div class="container">
             <div class="row">
-                <div class="col-xs-4">
-                    <h3><?= $item->name ?></h3>
-                </div>
-                <div class="col-xs-4">
-                    <p><?= $item->size ?></p>
-                </div>
-                <div class="col-xs-4">
-                    <h4><?= $item->price ?></h4>
-                </div>
+                <h1>You don't have anything in your cart!</h1>
             </div>
-        <?php } ?>
-    </div>
-    <h2><?= $price ?></h2> <!-- ADD WITH JS, CAN'T REFRESH WITH PHP VAR ON ITEM REMOVE -->  
-      
-    <?php include '../../templates/footer.html' ?>
+        </div>
+    <?php } else { ?>
+        <div class="container p-2">
+            <?php foreach ($cart_items as $item) { ?>
+                <div class="row">
+                    <div class="col-xs-3 px-1">
+                        <h3><?= $item->name ?></h3>
+                    </div>
+                    <div class="col-xs-3 px-1">
+                        <p><?= $item->size ?></p>
+                    </div>
+                    <div class="col-xs-3 px-1">
+                        <h4><?= $item->price ?></h4>
+                    </div>
+                    <a class="btn btn-danger" href="../modules/remove_from_cart.php?id=<?= $item->id ?>">Remove</a>
+                </div>
+            <?php } ?>
+            <h2><?= $price ?><a class="btn btn-success" href="modules/pay.php">Pay</a></h2> <!-- ADD WITH JS, CAN'T REFRESH WITH PHP VAR ON ITEM REMOVE -->
+        </div>
+    <?php } ?>
+
+    <?php include 'templates/footer.html' ?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
