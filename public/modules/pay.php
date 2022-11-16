@@ -20,6 +20,8 @@ if (!empty($id)) {
 
     $order_id = Cart::addToOrders($id, $full_price);
 
+    echo 'test';
+    die();
     foreach ($carts as $cart) {
         $name = $cart->name;
         $product_id = $cart->product_id;

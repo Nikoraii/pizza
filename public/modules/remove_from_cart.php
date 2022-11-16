@@ -12,7 +12,7 @@ $id = $_GET['id'];
 
 if (!empty($id)) {
     Cart::removeFromCart($id);
-    header('Location: ../user/cart.php');
+    header('Location: ../cart.php');
 } else {
-    header('Location: ../user/cart.php');
+    header('Location: ../cart.php');
 }

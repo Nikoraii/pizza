@@ -52,7 +52,7 @@ foreach ($cart_items as $cart_item) {
                     <div class="col-xs-3 px-1">
                         <h4><?= $item->price ?></h4>
                     </div>
-                    <a class="btn btn-danger" href="../modules/remove_from_cart.php?id=<?= $item->id ?>">Remove</a>
+                    <a class="btn btn-danger" href="modules/remove_from_cart.php?id=<?= $item->id ?>">Remove</a>
                 </div>
             <?php } ?>
             <h2><?= $price ?><a class="btn btn-success" href="modules/pay.php">Pay</a></h2> <!-- ADD WITH JS, CAN'T REFRESH WITH PHP VAR ON ITEM REMOVE -->
